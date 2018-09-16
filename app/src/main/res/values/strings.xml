@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Compresión de Datos</string>
+    <string name="comprimir">Comprimir</string>
+    <string name="examinar">Examinar</string>
 </resources>

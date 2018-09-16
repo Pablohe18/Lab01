@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="86dp"
-        android:text="Comprimir"
+        android:text="@string/comprimir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/btnExaminar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor" />
 
     <Button
         android:id="@+id/btnExaminar"
@@ -35,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="14dp"
         android:layout_marginTop="27dp"
-        android:text="Examinar"
+        android:text="@string/examinar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtArchivo"
         app:layout_constraintTop_toTopOf="parent" />
