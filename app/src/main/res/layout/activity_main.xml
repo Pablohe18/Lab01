@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintVertical_bias="0.525" />
 
     <Button
         android:id="@+id/btnExaminar"
@@ -38,15 +38,14 @@
     <TextView
         android:id="@+id/textoArchivo"
         android:layout_width="318dp"
-        android:layout_height="187dp"
+        android:layout_height="157dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168" />
+        app:layout_constraintVertical_bias="0.18" />
 
     <TextView
         android:id="@+id/textView3"
@@ -63,5 +62,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/txtComprimido"
+        android:layout_width="323dp"
+        android:layout_height="54dp"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="307dp" />
 
 </android.support.constraint.ConstraintLayout>
