@@ -19,5 +19,4 @@ public class Node {
         this.linkerBack = null;
 
     }
-
 }

@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.print(current.value + "->");
             current = current.linker;
         }
-
         System.out.println(current.value);
 
         if (root.linker == end) {
