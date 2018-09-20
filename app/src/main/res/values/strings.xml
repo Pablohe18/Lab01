@@ -1,8 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Compresión de Datos</string>
     <string name="comprimir">Comprimir</string>
     <string name="comprimir_huffman">Comprimir Huffman</string>
-    <string name="examinar">Examinar</string>
     <string name="examinar">Examinar</string>
     <string name="busca_tu_archivo_txt_aqui">Busca tu archivo .txt aqui:</string>
     <string name="su_texto_a_comprimir_es">Su texto a comprimir es:</string>

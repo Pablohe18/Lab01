@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     codedString += code;
                 }
+                
                 txtComprimido.setText(codedString);
                 break;
 
