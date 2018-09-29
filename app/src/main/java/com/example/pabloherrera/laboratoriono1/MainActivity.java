@@ -14,27 +14,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     Button btnComprimirHuf;
     Button btnExaminar;
+    Button btnComprimirLZW;
     TextView textoArchivo;
     String texto;
     static Node node;
     static Node newRoot;
     static String codedString = "";
+    static String cadena = "";
     TextView txtComprimido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnComprimirHuf = (Button) findViewById(R.id.btnComprimirHuf);
-        btnExaminar = (Button) findViewById(R.id.btnExaminar);
-        textoArchivo = (TextView) findViewById(R.id.textoArchivo);
-        txtComprimido = (TextView) findViewById(R.id.txtComprimido);
+        btnComprimirHuf = findViewById(R.id.btnComprimirHuf);
+        btnComprimirLZW = findViewById(R.id.btnComprimirLZW);
+        btnExaminar = findViewById(R.id.btnExaminar);
+        textoArchivo = findViewById(R.id.textoArchivo);
+        txtComprimido = findViewById(R.id.txtComprimido);
         btnComprimirHuf.setOnClickListener(this);
         btnExaminar.setOnClickListener(this);
     }
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case (R.id.btnComprimirHuf):
                 texto = textoArchivo.getText().toString();
                 char[] msgChar = texto.toCharArray();
-                ArrayList<Character> characters = new ArrayList<Character>();
+                ArrayList<Character> characters = new ArrayList<>();
                 for (int i = 0; i < msgChar.length; i++) {
                     if (!(characters.contains(msgChar[i]))) {
                         characters.add(msgChar[i]);
@@ -198,4 +204,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public void ComprimirlZW(View v){
+        cadena = textoArchivo.getText().toString();
+        char[]caracteres = cadena.toCharArray();
+        ArrayList<String> mapa = new ArrayList<>();
+        for (char caractere : caracteres) {
+            if (!mapa.contains(caractere)) {
+                mapa.add("" + caractere);
+            }
+        }
+        Collections.sort(mapa);
+
+        Map<String,Integer> dictionary = new HashMap<>();
+        int ilongitudD = mapa.size();
+
+        for (int x = 0; x < mapa.size(); x++)
+        {
+            dictionary.put("" + (char)x, x);
+        }
+        String w = "";
+        ArrayList<Integer> result = new ArrayList<>();
+        for (char c : cadena.toCharArray())
+        {
+            String wc = w + c;
+            if (dictionary.containsKey(wc))
+            {
+                w = wc;
+            }
+            else {
+                result.add(dictionary.get(w));
+                dictionary.put(wc, ilongitudD++);
+                w = "" + c;
+            }
+        }
+        if (!w.equals(""))
+        {
+            System.out.println("No hay ningun texto que comprimir");
+        }
+
+        String strTextoComprimido = "";
+        for (int y = 0; y < result.size(); y++)
+        {
+            if(y < result.size() - 1)
+            {
+                strTextoComprimido = strTextoComprimido + Integer.toString(result.get(y)) + ",";
+            }
+            else {
+                strTextoComprimido = strTextoComprimido + Integer.toString(result.get(y));
+            }
+        }
+    }
+
+    public void DescomprimirlZW(View v){
+
+    }
 }
