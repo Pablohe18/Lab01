@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textoArchivo = findViewById(R.id.textoArchivo);
         txtComprimido = findViewById(R.id.txtComprimido);
         btnComprimirHuf.setOnClickListener(this);
+        btnComprimirLZW.setOnClickListener(this);
         btnExaminar.setOnClickListener(this);
     }
 
@@ -133,6 +134,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtComprimido.setText(codedString);
                 break;
 
+            case (R.id.btnComprimirLZW ):
+
+                cadena = textoArchivo.getText().toString();
+                char[]caracteres = cadena.toCharArray();
+                ArrayList<String> mapa = new ArrayList<>();
+                for (char caractere : caracteres) {
+                    String strcaracter = "" + caractere;
+                    if (mapa.contains(strcaracter) != true) {
+                        mapa.add("" + caractere);
+                    }
+                }
+                Collections.sort(mapa);
+
+                Map<String,Integer> dictionary = new HashMap<>();
+                int ilongitudD = mapa.size();
+
+                for (int x = 0; x < mapa.size(); x++)
+                {
+                    dictionary.put(mapa.get(x), x);
+                }
+                String w = "";
+                ArrayList<Integer> result = new ArrayList<>();
+                for (char c : cadena.toCharArray())
+                {
+                    String wc = w + c;
+                    if (dictionary.containsKey(wc))
+                    {
+                        w = wc;
+                    }
+                    else {
+                        result.add(dictionary.get(w));
+                        dictionary.put(wc, ilongitudD++);
+                        w = "" + c;
+                    }
+                }
+
+                String strTextoComprimido = "";
+                for (int y = 0; y < result.size(); y++)
+                {
+                    if(y < result.size() - 1)
+                    {
+                        strTextoComprimido = strTextoComprimido + Integer.toString(result.get(y)) + ",";
+                    }
+                    else {
+                        strTextoComprimido = strTextoComprimido + Integer.toString(result.get(y));
+                    }
+                }
+                txtComprimido.setText(strTextoComprimido);
+                break;
+
             case (R.id.btnExaminar):
                 Intent intent = new Intent().addCategory(Intent.CATEGORY_OPENABLE).setType("*/*").setAction(Intent.ACTION_OPEN_DOCUMENT);
                 startActivityForResult(Intent.createChooser(intent, "select a file"), 123);
@@ -204,58 +255,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void ComprimirlZW(View v){
-        cadena = textoArchivo.getText().toString();
-        char[]caracteres = cadena.toCharArray();
-        ArrayList<String> mapa = new ArrayList<>();
-        for (char caractere : caracteres) {
-            if (!mapa.contains(caractere)) {
-                mapa.add("" + caractere);
-            }
-        }
-        Collections.sort(mapa);
-
-        Map<String,Integer> dictionary = new HashMap<>();
-        int ilongitudD = mapa.size();
-
-        for (int x = 0; x < mapa.size(); x++)
-        {
-            dictionary.put("" + (char)x, x);
-        }
-        String w = "";
-        ArrayList<Integer> result = new ArrayList<>();
-        for (char c : cadena.toCharArray())
-        {
-            String wc = w + c;
-            if (dictionary.containsKey(wc))
-            {
-                w = wc;
-            }
-            else {
-                result.add(dictionary.get(w));
-                dictionary.put(wc, ilongitudD++);
-                w = "" + c;
-            }
-        }
-        if (!w.equals(""))
-        {
-            System.out.println("No hay ningun texto que comprimir");
-        }
-
-        String strTextoComprimido = "";
-        for (int y = 0; y < result.size(); y++)
-        {
-            if(y < result.size() - 1)
-            {
-                strTextoComprimido = strTextoComprimido + Integer.toString(result.get(y)) + ",";
-            }
-            else {
-                strTextoComprimido = strTextoComprimido + Integer.toString(result.get(y));
-            }
-        }
-    }
-
-    public void DescomprimirlZW(View v){
-
-    }
 }

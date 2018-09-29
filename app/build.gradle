@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.pabloherrera.laboratoriono1"
-        minSdkVersion 'API 14: Android 4.0 (IceCreamSandwich)'
+        minSdkVersion 21 
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

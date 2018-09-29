@@ -17,10 +17,9 @@
         android:text="@string/comprimir_huffman"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.331" />
+        app:layout_constraintVertical_bias="0.34" />
 
     <Button
         android:id="@+id/btnComprimirLZW"
@@ -35,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.476"
-        tools:text="COMPRIMIR LZW"
+        android:text="Comprimir LZW"
         android:onClick="ComprimirlZW"
         />
 
